@@ -12,7 +12,7 @@ namespace Mot_Denis_Lab_2.Models
 
         [Display(Name = "Book Title")]
         public string Title { get; set; }
-        public string Author { get; set; }
+        //public string Author { get; set; }
 
         [Column(TypeName = "decimal(6, 2)")]
         public decimal Price { get; set; }
@@ -24,8 +24,10 @@ namespace Mot_Denis_Lab_2.Models
 
         public Publisher? Publisher { get; set; }
 
-        public string? AuthorName { get; set; }
+        public int? AuthorID { get; set; }
 
-        public Author? Authors { get; set; }
+        public Author? Author { get; set; }
+
+        public ICollection<BookCategory>? BookCategories { get; set; }
     }
 }

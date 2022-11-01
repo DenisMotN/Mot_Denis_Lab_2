@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model Mot_Denis_Lab_2.Pages.Books.EditModel
 
 @{
@@ -20,11 +20,6 @@
                 <span asp-validation-for="Book.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Book.Author" class="control-label"></label>
-                <input asp-for="Book.Author" class="form-control" />
-                <span asp-validation-for="Book.Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Book.Price" class="control-label"></label>
                 <input asp-for="Book.Price" class="form-control" />
                 <span asp-validation-for="Book.Price" class="text-danger"></span>
@@ -42,12 +37,28 @@
                 </span> 
             </div>
             <div class="form-group">
-                <label asp-for="Book.AuthorName" class="control-label">Author Name</label>
-                <select asp-for="Book.AuthorName" class="form-control" asp-items="ViewBag.AuthorName">
+                <label asp-for="Book.AuthorID" class="control-label">Author Name</label>
+                <select asp-for="Book.AuthorID" class="form-control" asp-items="ViewBag.AuthorID">
                 </select>
-                <span asp-validation-for="Book.AuthorName" class="text-danger">
+                <span asp-validation-for="Book.AuthorID" class="text-danger">
                 </span>
             </div>
+            <div class="form-group"> <div class="table"> <table> <tr> @{ int cnt = 0;
+             foreach (var cat in Model.AssignedCategoryDataList) {if (cnt++ % 3 == 0) 
+                 {
+                     @:</tr><tr> 
+                 } 
+                 @:<td> <input type="checkbox" name="selectedCategories" value="@cat.CategoryID" @(Html.Raw(cat.Assigned ? "checked=\"checked\"" : "")) /> 
+                 @cat.CategoryID @: @cat.Name 
+                 
+                 @:</td> 
+             } 
+             
+             @:</tr> 
+         } 
+         </table> 
+         </div> 
+         </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

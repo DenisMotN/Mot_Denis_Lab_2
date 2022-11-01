@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mot_Denis_Lab_2.Data;
 
@@ -11,9 +12,10 @@ using Mot_Denis_Lab_2.Data;
 namespace Mot_Denis_Lab_2.Migrations
 {
     [DbContext(typeof(Mot_Denis_Lab_2Context))]
-    partial class Mot_Denis_Lab_2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221030133349_BookCategory")]
+    partial class BookCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +53,14 @@ namespace Mot_Denis_Lab_2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int?>("AuthorID")
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AuthorsID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -69,7 +78,7 @@ namespace Mot_Denis_Lab_2.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AuthorID");
+                    b.HasIndex("AuthorsID");
 
                     b.HasIndex("PublisherID");
 
@@ -135,15 +144,15 @@ namespace Mot_Denis_Lab_2.Migrations
 
             modelBuilder.Entity("Mot_Denis_Lab_2.Models.Book", b =>
                 {
-                    b.HasOne("Mot_Denis_Lab_2.Models.Author", "Author")
+                    b.HasOne("Mot_Denis_Lab_2.Models.Author", "Authors")
                         .WithMany("Books")
-                        .HasForeignKey("AuthorID");
+                        .HasForeignKey("AuthorsID");
 
                     b.HasOne("Mot_Denis_Lab_2.Models.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherID");
 
-                    b.Navigation("Author");
+                    b.Navigation("Authors");
 
                     b.Navigation("Publisher");
                 });

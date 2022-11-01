@@ -24,5 +24,7 @@ namespace Mot_Denis_Lab_2.Data
         }
 
         public DbSet<Mot_Denis_Lab_2.Models.Author> Author { get; set; }
+
+        public DbSet<Mot_Denis_Lab_2.Models.Category> Category { get; set; }
     }
 }
