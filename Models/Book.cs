@@ -27,7 +27,9 @@ namespace Mot_Denis_Lab_2.Models
         public int? AuthorID { get; set; }
 
         public Author? Author { get; set; }
+        [NotMapped]
 
+        public Borrowing? Borrowing { get; set; }
         public ICollection<BookCategory>? BookCategories { get; set; }
     }
 }
