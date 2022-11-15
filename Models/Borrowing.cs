@@ -10,10 +10,10 @@ namespace Mot_Denis_Lab_2.Models
         public Member? Member { get; set; }
         public int? BookID { get; set; }
         public Book? Book { get; set; }
-
+        //[NotMapped]
         [DataType(DataType.Date)] 
         public DateTime ReturnDate { get; set; }
-        [NotMapped]
-        public ICollection<Book>? Books { get; set; }
+        
+       // public ICollection<Book>? Books { get; set; }
     }
 }

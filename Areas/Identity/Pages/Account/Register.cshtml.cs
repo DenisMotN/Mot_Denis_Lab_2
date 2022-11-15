@@ -116,8 +116,8 @@ namespace Mot_Denis_Lab_2.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
-            {
+           // if (ModelState.IsValid)
+           // {
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -157,7 +157,7 @@ namespace Mot_Denis_Lab_2.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-            }
+           // }
 
             // If we got this far, something failed, redisplay form
             return Page();

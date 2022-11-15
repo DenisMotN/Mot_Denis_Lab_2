@@ -19,6 +19,6 @@ namespace Mot_Denis_Lab_2.Models
                 return FirstName + " " + LastName;
             }
         }
-        public ICollection<Borrowing>? Borrowings { get; set; }
+        //public ICollection<Borrowing>? Borrowings { get; set; }
     }
 }
