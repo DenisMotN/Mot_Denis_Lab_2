@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mot_Denis_Lab_2.Data;
 using Mot_Denis_Lab_2.Models;
@@ -37,6 +38,13 @@ namespace Mot_Denis_Lab_2.Pages.Books
             TitleSort = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             AuthorSort = String.IsNullOrEmpty(sortOrder) ? "author_desc" : "";
             CurrentFilter = searchString;
+            var authorList = _context.Author.Select(x => new
+            {
+                x.ID,
+                FullName = x.FirstName + " " + x.LastName
+            });
+
+            ViewData["AuthorID"] = new SelectList(authorList, "ID", "FullName");
 
             BookD.Books = await _context.Book
                 .Include(b => b.Author)
